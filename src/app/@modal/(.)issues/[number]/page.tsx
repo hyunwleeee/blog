@@ -10,11 +10,13 @@ import { withAuth } from '@utils/withAuth';
 import { Modal } from './modal';
 import 'github-markdown-css/github-markdown.css';
 
-export default async function IssueModal({
-  params: { number: issue_number },
-}: {
-  params: { number: string };
+export default async function IssueModal(props: {
+  params: Promise<{ number: string }>;
 }) {
+  const params = await props.params;
+
+  const { number: issue_number } = params;
+
   const issue = await withAuth<IssueType>(options =>
     getRepoIssue(info.username, info.repo, Number(issue_number), options),
   );

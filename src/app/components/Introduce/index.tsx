@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import type { UserType } from '@/types/github';
 import { getUserInfo } from '@apis/github';
-import AnimatedText from '@app/_components/AnimatedText';
+import AnimatedText from '@components/AnimatedText';
 import { info } from '@constants/info';
 import { Section } from '@outer_components/layout';
 import { withAuth } from '@utils/withAuth';

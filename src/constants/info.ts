@@ -1,5 +1,5 @@
 export const info = {
-  username: 'hyunwlee-dev',
-  repo: 'codedummy',
+  username: 'hyunwleeee',
+  repo: 'blog',
   accessToken: process.env.GITHUB_ACCESS_TOKEN,
 } as const;

@@ -12,6 +12,7 @@ export default async function Page() {
   const issues = await withAuth<IssueType[]>(options =>
     getRepoIssues(info.username, info.repo, 1, 10, options),
   );
+
   return (
     <main>
       <Introduce />
