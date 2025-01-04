@@ -6,8 +6,8 @@ import '@styles/globals.css';
 import { pretendardFont } from '@styles/font';
 
 export const metadata: Metadata = {
-  title: 'CodeDummy',
-  description: 'CodeDummy 개인 블로그',
+  title: "hyunwlee's blog",
+  description: '주니어 프론트엔드 개발자 이현우의 블로그입니다.',
 };
 
 export default function RootLayout({
