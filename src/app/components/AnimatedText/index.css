@@ -1,5 +1,5 @@
 .animated-text {
-  @apply text-white text-sm tablet:text-lg laptop:text-xl desktop:text-2xl;
+  @apply text-sm tablet:text-lg laptop:text-xl desktop:text-2xl;
   h2 {
     @apply text-2xl tablet:text-3xl laptop:text-6xl desktop:text-8xl text-primary font-extrabold;
   }

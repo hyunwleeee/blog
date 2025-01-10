@@ -1,0 +1,5 @@
+.markdown {
+  blockquote {
+    @apply bg-gray-100 px-2 py-1 border-l-8 border-slate-600;
+  }
+}

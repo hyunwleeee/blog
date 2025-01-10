@@ -1,0 +1,20 @@
+@import './elements/blockquote.css';
+@import './elements/code.css';
+@import './elements/heading.css';
+@import './elements/hr.css';
+@import './elements/img.css';
+@import './elements/table.css';
+
+.markdown {
+  ul {
+    @apply list-disc ml-5;
+  }
+
+  ol {
+    @apply list-decimal ml-5;
+  }
+
+  p {
+    @apply my-1;
+  }
+}

@@ -10,7 +10,7 @@ import { type IssueType } from '@types';
 export default function Issues({ issues }: { issues: IssueType[] }) {
   return (
     <Section heading="Issues">
-      <motion.ul className="grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 gap-4">
+      <motion.ul className="grid grid-cols-1 mobile:grid-cols-2 laptop:grid-cols-3 gap-4">
         {issues?.map(issue => (
           <Link
             key={issue.id}

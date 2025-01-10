@@ -1,16 +1,19 @@
-import type { CSSProperties } from 'react';
-import Markdown from 'react-markdown';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { gruvboxDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import remarkGfm from 'remark-gfm';
+import Image from 'next/image';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/app/components/commons/Card';
+import Markdown from '@/components/widget/Markdown';
 import { getRepoIssue } from '@apis/github';
 import { info } from '@constants/info';
+import IssueModal from '@outer_components/layout/Modal/IssueModal';
 import { type IssueType } from '@types';
 import { withAuth } from '@utils/withAuth';
-import { Modal } from './modal';
-import 'github-markdown-css/github-markdown.css';
 
-export default async function IssueModal(props: {
+export default async function IssueModalPage(props: {
   params: Promise<{ number: string }>;
 }) {
   const params = await props.params;
@@ -22,31 +25,27 @@ export default async function IssueModal(props: {
   );
 
   return (
-    <Modal>
-      <Markdown
-        className="markdown markdown-body size-full"
-        remarkPlugins={[remarkGfm]}
-        components={{
-          code({ className, children, ...props }) {
-            const match = /language-(\w+)/.exec(className || '');
-            return match ? (
-              <SyntaxHighlighter
-                language={match[1]}
-                style={gruvboxDark as { [key: string]: CSSProperties }}
-                PreTag="div"
-              >
-                {String(children).replace(/\n$/, '')}
-              </SyntaxHighlighter>
-            ) : (
-              <code className={className} {...props}>
-                {children}
-              </code>
-            );
-          },
-        }}
-      >
-        {issue.body}
-      </Markdown>
-    </Modal>
+    <IssueModal>
+      <Card className="relative">
+        <CardHeader className="border-b border-gray-200 fixed z-10 bg-white w-[70vw] items-center rounded-t-lg">
+          <div className="relative mx-auto w-9 h-9 float-left rounded-full overflow-hidden mr-2">
+            <Image
+              src={issue.user?.avatar_url ?? ''}
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              alt=""
+              className="object-cover"
+            />
+          </div>
+          <CardTitle>{issue.title}</CardTitle>
+          <CardDescription>
+            <span className="mr-1">{issue.user?.login}</span>
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="absolute top-20 w-[70vw] overflow-hidden">
+          <Markdown markdown={issue.body ?? ''} />
+        </CardContent>
+      </Card>
+    </IssueModal>
   );
 }

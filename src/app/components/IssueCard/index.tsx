@@ -17,7 +17,7 @@ export default function IssueCard({
       whileHover="hover"
       variants={item}
     >
-      <h3>{issue.title}</h3>
+      <h3 className="text-xs tablet:text-lg laptop:text-xl">{issue.title}</h3>
     </motion.li>
   );
 }

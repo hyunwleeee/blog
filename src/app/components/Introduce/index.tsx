@@ -28,6 +28,7 @@ export default async function Introduce() {
   const whoami = await withAuth<UserType>(options =>
     getUserInfo(info.username, options),
   );
+
   return (
     <Section>
       <div className="flex flex-row items-center justify-center gap-4 tablet:gap-10 laptop:gap-16 desktop:gap-20">

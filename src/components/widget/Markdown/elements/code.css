@@ -1,0 +1,7 @@
+.markdown {
+  code {
+    &:not(pre *) {
+      @apply rounded-md p-1 text-xs font-semibold bg-slate-200;
+    }
+  }
+}
