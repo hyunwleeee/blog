@@ -2,9 +2,17 @@
 
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { useRouter } from 'next/navigation';
+import type { PropsWithChildren } from 'react';
 import { useEffect } from 'react';
+import Carousel from '@components/Carousel';
+import TileLink from '@components/Carousel/TileLink';
+import { Card, CardTitle } from '@components/commons/Card';
+import type { IssueType } from '@types';
 
-function IssueModal({ children }: { children: React.ReactNode }) {
+function IssueModal({
+  issues,
+  children,
+}: PropsWithChildren<{ issues: IssueType[] }>) {
   const router = useRouter();
 
   function handleBackdropClick() {
@@ -41,8 +49,16 @@ function IssueModal({ children }: { children: React.ReactNode }) {
           <XMarkIcon className="size-6 text-slate-900" />
         </button>
       </div>
-      <div className="absolute top-24 bg-white rounded-xl w-[70vw] h-24 overflow-auto scrollbar-hide">
-        {}
+      <div className="absolute top-24 text-black bg-primary/20 rounded-xl w-[70vw] h-24 overflow-auto scrollbar-hide">
+        <Carousel>
+          {issues.map(({ title, id, number }) => (
+            <TileLink href={`/issues/${number}`} key={id}>
+              <Card>
+                <CardTitle>{title}</CardTitle>
+              </Card>
+            </TileLink>
+          ))}
+        </Carousel>
       </div>
       <div className="rounded-xl text-black absolute top-52 bg-white w-[70vw] h-[70vh] overflow-scroll scrollbar-hide">
         {children}

@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from '@/app/components/commons/Card';
 import Markdown from '@/components/widget/Markdown';
-import { getRepoIssue } from '@apis/github';
+import { getRepoIssue, getRepoIssues } from '@apis/github';
 import { info } from '@constants/info';
 import IssueModal from '@outer_components/layout/Modal/IssueModal';
 import { type IssueType } from '@types';
@@ -24,8 +24,14 @@ export default async function IssueModalPage(props: {
     getRepoIssue(info.username, info.repo, Number(issue_number), options),
   );
 
+  const issues = await withAuth<IssueType[]>(options =>
+    getRepoIssues(info.username, info.repo, 1, 10, options),
+  );
+
   return (
-    <IssueModal>
+    <IssueModal
+      issues={issues.filter(issue => String(issue.number) != issue_number)}
+    >
       <Card className="relative">
         <CardHeader className="border-b border-gray-200 fixed z-10 bg-white w-[70vw] items-center rounded-t-lg">
           <div className="relative mx-auto w-9 h-9 float-left rounded-full overflow-hidden mr-2">

@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import type { UserType } from '@/types/github';
 import { getUserInfo } from '@apis/github';
 import AnimatedText from '@components/AnimatedText';
 import { info } from '@constants/info';
 import { Section } from '@outer_components/layout';
+import type { UserType } from '@types';
 import { withAuth } from '@utils/withAuth';
 
 export const tagMap = {

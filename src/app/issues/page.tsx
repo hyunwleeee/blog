@@ -8,5 +8,5 @@ export default async function Issues() {
     getRepoLabels(info.username, info.repo, options),
   );
 
-  return <div>{JSON.stringify(labels)}</div>;
+  return <div>{'helloworld!' + JSON.stringify(labels)}</div>;
 }
