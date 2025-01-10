@@ -1,13 +1,13 @@
 import Image from 'next/image';
+import Markdown from '@/components/widget/Markdown';
+import { getRepoIssue, getRepoIssues } from '@apis/github';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/app/components/commons/Card';
-import Markdown from '@/components/widget/Markdown';
-import { getRepoIssue, getRepoIssues } from '@apis/github';
+} from '@components/commons/Card';
 import { info } from '@constants/info';
 import IssueModal from '@outer_components/layout/Modal/IssueModal';
 import { type IssueType } from '@types';
@@ -20,13 +20,14 @@ export default async function IssueModalPage(props: {
 
   const { number: issue_number } = params;
 
-  const issue = await withAuth<IssueType>(options =>
-    getRepoIssue(info.username, info.repo, Number(issue_number), options),
-  );
-
-  const issues = await withAuth<IssueType[]>(options =>
-    getRepoIssues(info.username, info.repo, 1, 10, options),
-  );
+  const [issue, issues] = await Promise.all([
+    withAuth<IssueType>(options =>
+      getRepoIssue(info.username, info.repo, Number(issue_number), options),
+    ),
+    withAuth<IssueType[]>(options =>
+      getRepoIssues(info.username, info.repo, 1, 10, options),
+    ),
+  ]);
 
   return (
     <IssueModal
