@@ -1,9 +1,9 @@
-import clsx from 'clsx';
 import type { Metadata } from 'next';
 import Header from '@components/Header';
 import RouterAnimation from '@components/RouterAnimation';
 import '@styles/globals.css';
 import { pretendardFont } from '@styles/font';
+import { ThemeProvider } from './components/Provider/ThemeProvider';
 
 export const metadata: Metadata = {
   title: "hyunwlee's blog",
@@ -18,13 +18,13 @@ export default function RootLayout({
   modal: React.ReactNode;
 }>) {
   return (
-    <html className="scrollbar-hide">
-      <body
-        className={clsx(pretendardFont.className, 'bg-background text-white')}
-      >
-        <Header />
-        <RouterAnimation>{children}</RouterAnimation>
-        {modal}
+    <html lang="ko" className="scrollbar-hide">
+      <body className={pretendardFont.className}>
+        <ThemeProvider>
+          <Header />
+          <RouterAnimation>{children}</RouterAnimation>
+          {modal}
+        </ThemeProvider>
       </body>
     </html>
   );
