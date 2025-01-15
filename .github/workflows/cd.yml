@@ -9,10 +9,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Git clone
+        uses: actions/checkout@v3
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
+
+      - name: Check files
+        run: ls -al
 
       - name: Create .env
         env:
@@ -24,14 +28,62 @@ jobs:
       - name: Check if .env file exists
         run: ls -l .env
 
-      - name: Build
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        shell: bash
+        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        id: npm-cache
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Echo npm-cache-dir
+        run: echo ${{steps.npm-cache-dir.outputs.dir}}
+
+      - name: Log npm-cache status
         run: |
-          npm install next
-          npm run build
+          if [[ '${{ steps.npm-cache.outputs.cache-hit }}' == 'true' ]]; then
+            echo "npm cache hit!!";
+          else
+            echo "npm cache miss";
+          fi
+
+      - name: Install packages
+        run: npm install
+
+      - name: Cache .next/cache
+        uses: actions/cache@v4
+        id: 'next-cache'
+        with:
+          path: ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+
+      - name: Log next-cache status
+        run: |
+          if [[ '${{ steps.next-cache.outputs.cache-hit }}' == 'true' ]]; then
+            echo ".next/cache cache hit!!";
+          else
+            echo ".next/cache cache miss";
+          fi
+
+      - name: ls -al
+        run: ls -al
+
+      - name: Build
+        run: npm run build
+
+      - name: ls -al (after build)
+        run: ls -al
 
       - name: Run Unit Tests
-        run: |
-          npm run test
+        run: npm run test
 
       - name: Docker build and push
         env:
