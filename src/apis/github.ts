@@ -28,6 +28,7 @@ export async function getRepoLabels(
   fetchOptions: RequestInit = {},
 ) {
   return await fetch(API_ROUTES.repos.labels(owner, repo), {
+    next: { revalidate: 60 },
     headers: {
       'Content-Type': 'application/json',
       Accept: 'appliction/vnd.github+json',
@@ -45,6 +46,7 @@ export async function getRepoIssues(
   fetchOptions: RequestInit = {},
 ) {
   return await fetch(API_ROUTES.repos.issues(owner, repo, page, per_page), {
+    next: { revalidate: 60 },
     headers: {
       'Content-Type': 'application/json',
       Accept: 'appliction/vnd.github+json',
@@ -61,6 +63,7 @@ export async function getRepoIssue(
   fetchOptions: RequestInit = {},
 ) {
   return await fetch(API_ROUTES.repos.issue(owner, repo, issue_number), {
+    next: { revalidate: 60 },
     headers: {
       'Content-Type': 'application/json',
       Accept: 'appliction/vnd.github.raw+json',
