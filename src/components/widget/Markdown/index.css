@@ -6,6 +6,8 @@
 @import './elements/table.css';
 
 .markdown {
+  @apply dark:text-white;
+
   ul {
     @apply list-disc ml-5;
   }

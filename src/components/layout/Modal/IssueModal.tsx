@@ -53,14 +53,14 @@ function IssueModal({
         <Carousel>
           {issues.map(({ title, id, number }) => (
             <TileLink href={`/issues/${number}`} key={id}>
-              <Card className="bg-transparent items-center justify-center shadow-none">
+              <Card className="bg-transparent items-center justify-center">
                 <CardTitle className="size-full font-normal">{title}</CardTitle>
               </Card>
             </TileLink>
           ))}
         </Carousel>
       </div>
-      <div className="rounded-xl text-black absolute top-52 bg-white w-[70vw] h-[70vh] overflow-scroll scrollbar-hide">
+      <div className="bg-white dark:bg-background rounded-xl text-black absolute top-52 w-[70vw] h-[70vh] overflow-scroll scrollbar-hide">
         {children}
       </div>
     </div>

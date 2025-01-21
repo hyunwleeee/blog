@@ -34,7 +34,7 @@ export default async function IssueModalPage(props: {
       issues={issues.filter(issue => String(issue.number) != issue_number)}
     >
       <Card className="relative">
-        <CardHeader className="border-b border-gray-200 fixed z-10 bg-white w-[70vw] items-center rounded-t-lg">
+        <CardHeader className="z-10 bg-white dark:bg-background border-b dark:border-black border-gray-200 fixed w-[70vw] items-center rounded-t-lg">
           <div className="relative mx-auto w-9 h-9 float-left rounded-full overflow-hidden mr-2">
             <Image
               src={issue.user?.avatar_url ?? ''}
@@ -44,8 +44,8 @@ export default async function IssueModalPage(props: {
               className="object-cover"
             />
           </div>
-          <CardTitle>{issue.title}</CardTitle>
-          <CardDescription>
+          <CardTitle className="dark:text-white">{issue.title}</CardTitle>
+          <CardDescription className="dark:text-white">
             <span className="mr-1">{issue.user?.login}</span>
           </CardDescription>
         </CardHeader>

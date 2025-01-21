@@ -1,5 +1,8 @@
 import type { Endpoints } from '@octokit/types';
 
+export type Issues =
+  Endpoints['GET /repos/{owner}/{repo}/issues/{issue_number}']['response']['data'];
+
 export type IssueType =
   Endpoints['GET /repos/{owner}/{repo}/issues/{issue_number}']['response']['data'];
 

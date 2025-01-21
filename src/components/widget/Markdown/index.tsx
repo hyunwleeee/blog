@@ -28,14 +28,7 @@ function Markdown({ markdown }: { markdown: string }) {
         ),
         code({ inline, className, children, ...props }) {
           if (inline) {
-            return (
-              <code
-                className="rounded bg-gray-200 px-1 py-0.5 text-sm text-red-600"
-                {...props}
-              >
-                {children}
-              </code>
-            );
+            return <code {...props}>{children}</code>;
           }
 
           const match = /language-(\w+)/.exec(className || '');
