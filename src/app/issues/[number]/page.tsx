@@ -2,8 +2,7 @@ import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import dayjs from 'dayjs';
 import Image from 'next/image';
 import Link from 'next/link';
-import type { Issues } from '@/types/github';
-import { getRepoIssue, getRepoIssues } from '@apis/github';
+import { getRepoIssue } from '@apis/github';
 import {
   Card,
   CardContent,
@@ -14,6 +13,7 @@ import {
 import { info } from '@constants/info';
 import Markdown from '@outer_components/widget/Markdown';
 import { type IssueType } from '@types';
+import { getIssueLabels } from '@utils/getIssueLabels';
 import { withAuth } from '@utils/withAuth';
 
 export const dynamicParams = false;
@@ -25,23 +25,9 @@ export default async function IssuePage(props: {
 
   const { number: issue_number } = params;
 
-  const [issue] = await Promise.all([
-    withAuth<IssueType>(options =>
-      getRepoIssue(info.username, info.repo, Number(issue_number), options),
-    ),
-    withAuth<IssueType[]>(options =>
-      getRepoIssues(info.username, info.repo, 1, 10, options),
-    ),
-  ]);
-
-  const getIssueLabels = (issue: Issues) => {
-    return issue.labels
-      .map(label => (typeof label === 'string' ? label : label.name))
-      .filter(label => label !== '');
-  };
-
-  // const bgImg = 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Archlinux-logo-standard-version.svg/250px-Archlinux-logo-standard-version.svg.png';
-  // const bgImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQknvgwfin4JnKVQMPZgDbat47-2CTCudu1g&s'
+  const issue = await withAuth<IssueType>(options =>
+    getRepoIssue(info.username, info.repo, Number(issue_number), options),
+  );
 
   return (
     <div className="mt-4">

@@ -19,7 +19,7 @@ export const API_ROUTES = {
       `${API_URL}/repos/${owner}/${repo}/labels`,
 
     /**
-     * @name GET /repos/{owner}/{repo}/issues?page:{page}&per_page:{per_page}
+     * @name GET /repos/{owner}/{repo}/issues?page:{page}&per_page:{per_page}&labels:{labels}
      * @description 해당 레포지토리의 이슈 모두 가져오기
      * @link https://docs.github.com/ko/rest/issues/issues?apiVersion=2022-11-28#list-repository-issues
      */

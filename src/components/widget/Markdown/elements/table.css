@@ -4,7 +4,7 @@
     tr,
     th,
     td {
-      @apply border border-background;
+      @apply border border-background dark:border-white;
     }
 
     th,
@@ -14,7 +14,7 @@
 
     tbody {
       tr:nth-child(even) {
-        @apply bg-gray-100;
+        @apply bg-gray-100 dark:bg-black;
       }
     }
   }
