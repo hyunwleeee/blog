@@ -17,12 +17,12 @@ function Markdown({ markdown }: { markdown: string }) {
       components={{
         a: ({ href, children }) => (
           <Link
-            className="inline-flex items-center underline text-blue-500"
+            className="inline-flex items-center underline underline-offset-4 text-blue-400"
             href={href}
             rel="noopener noreferrer"
             target="_blank"
           >
-            <LinkIcon className="size-4 text-blue-500" />
+            <LinkIcon className="size-4" />
             {children}
           </Link>
         ),
@@ -34,7 +34,11 @@ function Markdown({ markdown }: { markdown: string }) {
           const match = /language-(\w+)/.exec(className || '');
 
           return match ? (
-            <SyntaxHighlighter style={vscDarkPlus} PreTag="div">
+            <SyntaxHighlighter
+              style={vscDarkPlus}
+              PreTag="div"
+              className="shadow-2xl rounded-2xl"
+            >
               {String(children).replace(/\n$/, '')}
             </SyntaxHighlighter>
           ) : (

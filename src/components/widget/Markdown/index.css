@@ -8,6 +8,10 @@
 .markdown {
   @apply dark:text-white;
 
+  p {
+    @apply my-8 leading-8 text-lg;
+  }
+
   ul {
     @apply list-disc ml-5;
   }
@@ -16,7 +20,7 @@
     @apply list-decimal ml-5;
   }
 
-  p {
-    @apply my-1;
+  li {
+    @apply mt-1 mb-2;
   }
 }

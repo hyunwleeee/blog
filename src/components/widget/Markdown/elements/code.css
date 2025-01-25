@@ -1,7 +1,7 @@
 .markdown {
   code {
     &:not(pre *) {
-      @apply rounded-md p-1 text-xs font-semibold dark:bg-gray-700 bg-slate-200;
+      @apply inline-flex items-center rounded-md px-1 py-0.5 text-sm font-medium dark:bg-stone-700 bg-stone-200 text-orange-400;
     }
   }
 }

@@ -30,16 +30,16 @@ export default async function IssuePage(props: {
   );
 
   return (
-    <div className="mt-4">
-      <div className="mx-auto h-10 w-[70vw]">
+    <div className="">
+      <div className="absolute z-20 left-1/2 -translate-x-1/2 mt-4 mx-auto h-10 w-[70vw]">
         <Link
           href="/issues"
-          className="flex justify-center items-center w-10 h-full bg-white float-right rounded-full mr-4"
+          className="flex justify-center items-center w-10 h-full bg-white float-right rounded-full mr-8"
         >
           <ArrowLeftIcon className="size-6 text-slate-900" />
         </Link>
       </div>
-      <div className="absolute -z-10 inset-0 bg-transparent text-black">
+      <div className="absolute z-10 inset-0 bg-transparent text-black">
         <Card className="relative w-screen">
           <div className="backdrop-blur-lg w-full h-72">
             {/*<img src={bgImg} className="absolute -z-10 inset-0 size-full object-cover -z-10" alt="" />*/}
