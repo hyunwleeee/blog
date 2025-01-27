@@ -7,7 +7,7 @@ const Card = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={clsx('text-black rounded-lg', className)}
+    className={clsx('text-black dark:text-white rounded-lg', className)}
     {...props}
   />
 ));

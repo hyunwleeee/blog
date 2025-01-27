@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import Link from '@components/commons/Link';
 import IssueCard from '@components/IssueCard';
 import { Section } from '@outer_components/layout';
-import { bookkFontMyungjo } from '@styles/font';
 import { type IssueType } from '@types';
 
 const DEFAULT_HEADING = 'Issues';
@@ -27,7 +26,7 @@ export default function Issues({
             redirectType={redirectType}
             key={issue.id}
             href={`/issues/${issue.number}`}
-            className={`aspect-video ${bookkFontMyungjo.className} font-bold text-2xl`}
+            className={`aspect-video font-bold text-2xl`}
           >
             <IssueCard issue={issue} />
           </Link>
