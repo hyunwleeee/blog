@@ -52,7 +52,7 @@ export default function AnimatedText({
 }) {
   return (
     <motion.div
-      className="animated-text"
+      className="animated-text overflow-hidden"
       initial="hidden"
       animate="show"
       variants={container}

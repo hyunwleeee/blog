@@ -25,7 +25,7 @@ export default function IssueCard({
       <Card>
         <div
           className={clsx(
-            'relative flex items-center justify-center min-w-10 w-full h-40 rounded-xl font-bold text-4xl laptop:text-5xl text-white',
+            'relative flex items-center justify-center w-full h-40 laptop:h-48 desktop:h-52 rounded-xl font-bold text-4xl laptop:text-5xl text-white',
             {
               ['bg-friendlyGit']: label === 'Git',
               ['bg-friendlyOs']: label === 'OS',
@@ -43,7 +43,7 @@ export default function IssueCard({
           ) : (
             getImageOrTextByLabel(label)
           )}
-          <div className="bg-background -bottom-5 right-3 z-10 absolute size-10 rounded-full overflow-hidden">
+          <div className="bg-background -bottom-5 right-3 absolute size-10 rounded-full overflow-hidden">
             <Image
               src={issue.user?.avatar_url ?? ''}
               fill
