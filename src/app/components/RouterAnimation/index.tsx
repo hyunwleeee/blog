@@ -18,7 +18,11 @@ export default function RouterAnimation({ children }: PropsWithChildren) {
       <AnimatePresence mode="wait">
         {showAnimation && <LoopAnimation />}
       </AnimatePresence>
-      {!showAnimation && children}
+      {!showAnimation && (
+        <div className="mt-20 tablet:mt-24 laptop:mt-28 desktop:mt-32">
+          {children}
+        </div>
+      )}
     </>
   );
 }

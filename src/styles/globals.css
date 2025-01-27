@@ -4,6 +4,6 @@
 
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-800 min-h-dvh dark:bg-background dark:text-white;
+    @apply bg-slate-50 text-slate-800 dark:bg-background dark:text-white;
   }
 }

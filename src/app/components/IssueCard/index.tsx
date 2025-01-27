@@ -3,10 +3,10 @@ import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { Card, CardDescription, CardTitle } from '@components/commons/Card';
 import type { IssueType, PropsWithClassName } from '@types';
 import { getImageOrTextByLabel, isImage } from '@utils/getImageOrTextByLabel';
 import { getIssueLabels } from '@utils/getIssueLabels';
-import { Card, CardDescription, CardTitle } from '../commons/Card';
 import { item } from './motion';
 
 export default function IssueCard({
@@ -27,9 +27,9 @@ export default function IssueCard({
           className={clsx(
             'relative flex items-center justify-center min-w-10 w-full h-40 rounded-xl font-bold text-4xl laptop:text-5xl text-white',
             {
-              ['bg-[#df4b33]']: label === 'Git',
-              ['bg-[#1793d1]']: label === 'OS',
-              ['bg-green-500']: label === 'Frontend',
+              ['bg-friendlyGit']: label === 'Git',
+              ['bg-friendlyOs']: label === 'OS',
+              ['bg-slate-500']: label === 'Frontend',
             },
           )}
         >
@@ -58,7 +58,9 @@ export default function IssueCard({
           <MinusIcon className="inline-block size-5 rotate-90" />
           <span>{dayjs(issue.created_at).format('YYYY.MM.DD')}</span>
         </CardDescription>
-        <CardTitle className="my-2 text-xl font-light">{issue.title}</CardTitle>
+        <CardTitle className="mt-1.5 mb-2 text-lg font-light">
+          {issue.title}
+        </CardTitle>
       </Card>
     </motion.li>
   );

@@ -12,6 +12,8 @@ const config: Config = {
       colors: {
         primary: '#A6BBCC',
         background: '#221F1F',
+        friendlyGit: '#DF4B33',
+        friendlyOs: '#1793D1',
       },
       boxShadow: {
         darkShadow:

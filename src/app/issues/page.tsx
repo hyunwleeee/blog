@@ -21,7 +21,7 @@ export default async function IssuesPage() {
   }));
 
   return (
-    <div>
+    <div className="">
       {groupedIssues.map(({ labelName, issues }) => {
         if (issues.length === 0) return null;
         return (

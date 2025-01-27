@@ -1,11 +1,40 @@
+'use client';
+
+import {
+  motion,
+  useAnimation,
+  useMotionValueEvent,
+  useScroll,
+} from 'framer-motion';
 import Navigation from '@components/Navigation';
 import ThemeButton from '@components/ThemeButton';
+import { item } from './motion';
 
-export default async function Header() {
+const LIMIT_SCROLL_Y = 288;
+
+export default function Header() {
+  const { scrollY } = useScroll();
+  const control = useAnimation();
+
+  useMotionValueEvent(scrollY, 'change', val => {
+    if (val > LIMIT_SCROLL_Y) {
+      control.start('hidden');
+      return;
+    }
+    control.start('show');
+  });
+
   return (
-    <header className="z-20 relative mx-10 tablet:mx-auto tablet:w-[500px] laptop:w-[800px] desktop:w-[1100px]">
-      <Navigation />
-      <ThemeButton />
-    </header>
+    <motion.header
+      initial="show"
+      animate={control}
+      variants={item}
+      className="h-16 fixed inset-x-0 top-0 w-full z-20 flex justify-center items-center"
+    >
+      <div className="w-[70vw] flex relative justify-center">
+        <Navigation />
+        <ThemeButton />
+      </div>
+    </motion.header>
   );
 }

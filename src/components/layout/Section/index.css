@@ -1,9 +1,9 @@
 .section {
-  @apply overflow-hidden relative mt-8 mx-10 tablet:mt-16 laptop:mt-32 tablet:mx-auto tablet:w-[500px] laptop:w-[800px] desktop:mx-auto desktop:w-[1100px];
+  @apply overflow-hidden relative mx-10 mt-12 tablet:mx-auto tablet:w-[500px] laptop:w-[800px] desktop:mx-auto desktop:w-[1100px];
 }
 
 .heading {
-  @apply mb-4 relative text-2xl tablet:text-3xl laptop:text-6xl desktop:text-8xl text-primary font-extrabold;
+  @apply mb-4 relative text-2xl tablet:text-3xl laptop:text-4xl text-primary font-extrabold;
 }
 
 .heading::after {

@@ -12,7 +12,7 @@ const links = [
 export default function Navigation() {
   const path = usePathname();
   return (
-    <nav className="mt-4 tablet:mt-6 laptop:mt-10">
+    <nav>
       <ul className="text-sm tablet:text-lg laptop:text-xl desktop:text-2xl flex flex-row w-full justify-center gap-8">
         {links.map(link => (
           <li key={link.href}>
@@ -20,7 +20,7 @@ export default function Navigation() {
               {link.href === path && (
                 <motion.span
                   layoutId="underline"
-                  className="absolute left-0 top-full block h-[2px] w-full bg-black dark:bg-white"
+                  className="absolute left-0 top-full block h-[2px] w-full bg-white"
                 />
               )}
               {link.label}

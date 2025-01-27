@@ -10,7 +10,7 @@ function ThemeButton() {
 
   return (
     <button
-      className="border border-black dark:border-white p-1 rounded-lg absolute top-1/2 -translate-y-1/2 right-0"
+      className="absolute right-5 top-1/2 -translate-y-1/2"
       onClick={() => {
         dispatch({ type: 'toggle' });
       }}
