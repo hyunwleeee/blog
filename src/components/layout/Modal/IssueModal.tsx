@@ -20,12 +20,8 @@ function IssueModal({
   }
 
   function handleBackdropKeyDown(event: KeyboardEvent) {
-    switch (event.key) {
-      case 'Escape':
-        router.back();
-        return;
-      default:
-        return;
+    if (event.key === 'Escape') {
+      router.back();
     }
   }
 
@@ -40,16 +36,17 @@ function IssueModal({
   }, []);
 
   return (
-    <div className="w-full fixed inset-0 flex justify-center gap-4 bg-black/50 backdrop-blur-sm">
-      <div className="absolute top-10 bg-transparent w-[70vw]">
+    <div className="w-full fixed inset-0 flex justify-center gap-4 bg-black/50 backdrop-blur-sm z-40">
+      <div className="absolute z-50 top-12 right-10 bg-transparent">
         <button
-          className="flex justify-center items-center w-10 h-10 bg-white float-right rounded-full"
+          className="flex justify-center items-center w-10 h-10 bg-white rounded-full shadow-lg"
           onClick={handleBackdropClick}
         >
-          <XMarkIcon className="size-6 text-slate-900" />
+          <XMarkIcon className="h-6 w-6 text-slate-900" />
         </button>
       </div>
-      <div className="absolute top-24 text-black bg-primary/20 rounded-xl w-[70vw] h-24 overflow-auto scrollbar-hide">
+
+      <div className="absolute top-24 text-black bg-primary/20 rounded-xl w-[70vw] h-24 overflow-auto scrollbar-hide z-30">
         <Carousel>
           {issues.map(({ title, id, number }) => (
             <TileLink href={`/issues/${number}`} key={id}>
@@ -60,6 +57,7 @@ function IssueModal({
           ))}
         </Carousel>
       </div>
+
       <div className="bg-white dark:bg-background rounded-xl text-black absolute top-52 w-[70vw] h-[70vh] overflow-scroll scrollbar-hide">
         {children}
       </div>

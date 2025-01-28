@@ -37,7 +37,7 @@ export default function IssueCard({
             <Image
               fill
               src={getImageOrTextByLabel(label)}
-              alt="git"
+              alt={label}
               className="absolute p-14"
             />
           ) : (

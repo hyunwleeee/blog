@@ -30,7 +30,7 @@ export default async function IssuePage(props: {
   );
 
   return (
-    <div className="">
+    <>
       <div className="absolute z-20 left-1/2 -translate-x-1/2 mt-4 mx-auto h-10 w-[70vw]">
         <Link
           href="/issues"
@@ -39,12 +39,13 @@ export default async function IssuePage(props: {
           <ArrowLeftIcon className="size-6 text-slate-900" />
         </Link>
       </div>
+
       <div className="absolute z-10 inset-0 bg-transparent text-black">
         <Card className="relative w-screen">
           <div className="backdrop-blur-lg w-full h-72">
             {/*<img src={bgImg} className="absolute -z-10 inset-0 size-full object-cover -z-10" alt="" />*/}
             <CardHeader className="bg-black/60 backdrop-blur-lg flex flex-col justify-end h-full mx-auto w-[70vw]">
-              <CardTitle className="text-5xl text-white font-light">
+              <CardTitle className="text-4xl text-white font-light">
                 {issue.title}
               </CardTitle>
               <span className="mt-2 text-white">
@@ -72,6 +73,6 @@ export default async function IssuePage(props: {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </>
   );
 }

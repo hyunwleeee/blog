@@ -13,7 +13,7 @@ export default function Navigation() {
   const path = usePathname();
   return (
     <nav>
-      <ul className="text-sm tablet:text-lg laptop:text-xl desktop:text-2xl flex flex-row w-full justify-center gap-8">
+      <ul className="text-sm flex flex-row w-full justify-center gap-8">
         {links.map(link => (
           <li key={link.href}>
             <Link className="relative" href={link.href}>

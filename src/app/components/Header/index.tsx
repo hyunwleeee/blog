@@ -29,7 +29,7 @@ export default function Header() {
       initial="show"
       animate={control}
       variants={item}
-      className="h-16 fixed inset-x-0 top-0 w-full z-20 flex justify-center items-center"
+      className="h-16 z-20 fixed inset-x-0 top-0 w-full flex justify-center items-center"
     >
       <div className="w-[70vw] flex relative justify-center">
         <Navigation />
