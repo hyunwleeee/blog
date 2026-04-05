@@ -33,7 +33,7 @@ export default async function Introduce() {
     <Section>
       <div className="flex flex-row items-center justify-center gap-4 tablet:gap-10 laptop:gap-16 desktop:gap-20">
         <AnimatedText textures={textures} />
-        <div className="flex flex-shrink-0 w-[80px] h-[80px] tablet:h-[120px] tablet:w-[120px] laptop:h-[200px] laptop:w-[200px] desktop:h-[300px] desktop:w-[300px] items-center justify-center overflow-hidden rounded-3xl bg-primary">
+        {/*<div className="flex flex-shrink-0 w-[80px] h-[80px] tablet:h-[120px] tablet:w-[120px] laptop:h-[200px] laptop:w-[200px] desktop:h-[300px] desktop:w-[300px] items-center justify-center overflow-hidden rounded-3xl bg-primary">
           <div className="relative aspect-square w-full">
             <Image
               className="absolute"
@@ -44,6 +44,7 @@ export default async function Introduce() {
             />
           </div>
         </div>
+        */}
       </div>
     </Section>
   );
