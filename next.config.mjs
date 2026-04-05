@@ -1,14 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    dirs: ['app'],
-  },
-  webpack: config => {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ['@svgr/webpack'],
-    });
-    return config;
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
   },
   logging: {
     fetches: {
@@ -16,8 +14,11 @@ const nextConfig = {
     },
   },
   images: {
-    domains: ['avatars.githubusercontent.com'],
     remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      },
       {
         protocol: 'https',
         hostname: 'github.com',
