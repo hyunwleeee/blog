@@ -2,8 +2,7 @@ name: CD
 
 on:
   push:
-    branches: []
-    # branches: ['develop']
+    branches: ['develop']
 
 jobs:
   build:
