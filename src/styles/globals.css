@@ -2,8 +2,207 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --colors-neutral-0: #fefefe;
+  --colors-neutral-100: #fbf9f7;
+  --colors-neutral-200: #efedeb;
+  --colors-neutral-300: #dedcda;
+  --colors-neutral-400: #c0bfbf;
+  --colors-neutral-600: #4a4846;
+  --colors-neutral-700: #34302d;
+  --colors-neutral-800: #201e1d;
+  --colors-neutral-900: #1c1a19;
+
+  --colors-blue-200: #e1f1fe;
+  --colors-blue-500: #93cefc;
+  --colors-blue-700: #75b0de;
+  --colors-blue-800: #5792c0;
+  --colors-blue-900: #022b4a;
+
+  --colors-green-200: #e9f5ea;
+  --colors-green-500: #9dd3a9;
+  --colors-green-700: #008531;
+  --colors-green-900: #132a18;
+
+  --colors-yellow-200: #fff5e1;
+  --colors-yellow-500: #facc79;
+  --colors-yellow-700: #ea9806;
+  --colors-yellow-900: #4a3003;
+
+  --colors-red-400: #f04438;
+  --colors-red-600: #d92d20;
+
+  --spacing-0: 0px;
+  --spacing-25: 2px;
+  --spacing-50: 4px;
+  --spacing-75: 6px;
+  --spacing-100: 8px;
+  --spacing-150: 12px;
+  --spacing-200: 16px;
+  --spacing-250: 20px;
+  --spacing-300: 24px;
+  --spacing-400: 32px;
+  --spacing-500: 40px;
+  --spacing-600: 48px;
+  --spacing-800: 64px;
+  --spacing-1000: 80px;
+
+  --corner-radius-0: 0px;
+  --corner-radius-4: 4px;
+  --corner-radius-6: 6px;
+  --corner-radius-8: 8px;
+  --corner-radius-10: 10px;
+  --corner-radius-12: 12px;
+  --corner-radius-16: 16px;
+  --corner-radius-20: 20px;
+  --corner-radius-24: 24px;
+  --corner-radius-full: 999px;
+
+  /* font-size */
+  --font-size-16: 16px;
+  --font-size-18: 18px;
+  --font-size-20: 20px;
+  --font-size-24: 24px;
+  --font-size-28: 28px;
+  --font-size-32: 32px;
+  --font-size-40: 40px;
+
+  /* line-height */
+  --line-height-130: 130%;
+  --line-height-146: 146%;
+  --line-height-150: 150%;
+
+  /* letter-spacing */
+  --letter-spacing-sm: -0.2px;
+  --letter-spacing-md: -0.4px;
+  --letter-spacing-lg: -0.5px;
+  --letter-spacing-xl: -1px;
+
+  /* font-weight */
+  --font-weight-regular:   400;
+  --font-weight-medium:    500;
+  --font-weight-semibold:  600;
+  --font-weight-bold:      700;
+  --font-weight-extrabold: 800;
+
+  /* font-family */
+  --font-family-sans: 'DM Sans', sans-serif;
+  --font-family-mono: 'Fira Code', monospace;
+
+  /* semantic tokens */
+  --color-bg: var(--colors-neutral-0);
+  --color-border: var(--colors-neutral-200);
+}
+
+[data-theme="dark"] {
+  --color-bg: var(--colors-neutral-900);
+  --color-border: var(--colors-neutral-700);
+}
+
+/* Text Preset 1 - DM Sans, ExtraBold */
+.text-preset-1 {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-40);
+  line-height: var(--line-height-130);
+  letter-spacing: var(--letter-spacing-xl);
+  font-weight: var(--font-weight-extrabold);
+}
+
+/* Text Preset 2 - DM Sans, ExtraBold */
+.text-preset-2 {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-32);
+  line-height: var(--line-height-130);
+  letter-spacing: var(--letter-spacing-lg);
+  font-weight: var(--font-weight-extrabold);
+}
+
+/* Text Preset 3 - DM Sans, Bold */
+.text-preset-3 {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-28);
+  line-height: var(--line-height-130);
+  letter-spacing: var(--letter-spacing-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Text Preset 4 - DM Sans, SemiBold */
+.text-preset-4 {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-24);
+  line-height: var(--line-height-130);
+  letter-spacing: var(--letter-spacing-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Text Preset 5 - DM Sans, SemiBold */
+.text-preset-5 {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-20);
+  line-height: var(--line-height-130);
+  letter-spacing: var(--letter-spacing-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Text Preset 6 - DM Sans, Medium */
+.text-preset-6 {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-18);
+  line-height: var(--line-height-150);
+  letter-spacing: var(--letter-spacing-lg);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Text Preset 7 - DM Sans, Regular */
+.text-preset-7 {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-18);
+  line-height: var(--line-height-150);
+  letter-spacing: var(--letter-spacing-sm);
+  font-weight: var(--font-weight-regular);
+}
+
+/* Text Preset 7 - DM Sans, SemiBold */
+.text-preset-7s {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-18);
+  line-height: var(--line-height-150);
+  letter-spacing: var(--letter-spacing-sm);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Text Preset 8 - DM Sans, Regular */
+.text-preset-8 {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-130);
+  letter-spacing: var(--letter-spacing-sm);
+  font-weight: var(--font-weight-regular);
+}
+
+/* Text Preset 8 - DM Sans, Italic */
+.text-preset-8-italic {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-130);
+  letter-spacing: var(--letter-spacing-sm);
+  font-weight: var(--font-weight-regular);
+  font-style: italic;
+}
+
+/* Text Preset 9 - Fira Code, Regular */
+.text-preset-9 {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-146);
+  letter-spacing: var(--letter-spacing-md);
+  font-weight: var(--font-weight-regular);
+}
+
+/**
 @layer base {
   body {
     @apply bg-slate-50 text-slate-800 dark:bg-background dark:text-white;
   }
 }
+**/

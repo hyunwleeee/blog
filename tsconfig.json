@@ -40,6 +40,12 @@
       "@constants/*": [
         "./src/constants/*"
       ],
+      "@contexts/*": [
+        "./src/contexts/*"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
       "@types": [
         "./src/types/"
       ],

@@ -1,4 +1,4 @@
-.section {
+/**.section {
   @apply relative mx-10 mt-12 tablet:mx-auto tablet:w-[500px] laptop:w-[800px] desktop:mx-auto desktop:w-[1100px];
 }
 
@@ -10,3 +10,4 @@
   content: '';
   @apply absolute w-full h-[2px] top-1/2 translate-y-[-50%] ml-12 bg-[#a6bbcc];
 }
+**/

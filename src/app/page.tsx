@@ -1,3 +1,5 @@
+'use client';
+
 import { getRepoIssues } from '@apis/github';
 /* import About from '@components/About'; */
 /* import ContanctMe from '@components/ContactMe'; */
@@ -9,14 +11,16 @@ import { type IssueType } from '@types';
 import { withAuth } from '@utils/withAuth';
 
 export default async function Page() {
-  const issues = await withAuth<IssueType[]>(options =>
+  {
+    /*const issues = await withAuth<IssueType[]>(options =>
     getRepoIssues(info.username, info.repo, 1, 10, options),
-  );
+  );*/
+  }
 
   return (
     <main>
-      <Introduce />
-      <Issues issues={issues} />
+      {/*<Introduce />*/}
+      {/*<Issues issues={issues} />*/}
       {/*<About />*/}
       {/*<Projects />*/}
       {/*<ContanctMe />*/}

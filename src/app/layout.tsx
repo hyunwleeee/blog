@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 import Header from '@components/Header';
-import RouterAnimation from '@components/RouterAnimation';
-import '@styles/globals.css';
+import { ThemeProvider } from '@contexts/theme.context';
 import { dmSansFont } from '@styles/font';
-import { ThemeProvider } from './components/Provider/ThemeProvider';
+import '@styles/globals.css';
 
 export const metadata: Metadata = {
   title: "hyunwlee's blog",
@@ -18,11 +17,11 @@ export default function RootLayout({
   modal: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className="scrollbar-hide">
+    <html lang="ko" className="scrollbar-hide" data-theme="light">
       <body className={dmSansFont.className}>
         <ThemeProvider>
           <Header />
-          <RouterAnimation>{children}</RouterAnimation>
+          {children}
           {modal}
         </ThemeProvider>
       </body>

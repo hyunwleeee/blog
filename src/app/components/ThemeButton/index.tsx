@@ -2,7 +2,8 @@
 
 import { MoonIcon } from '@heroicons/react/24/outline';
 import { SunIcon } from '@heroicons/react/24/outline';
-import { useTheme, useThemeDispatch } from '@components/Provider/ThemeProvider';
+import useTheme from '@hooks/useTheme';
+import useThemeDispatch from '@hooks/useThemeDispatch';
 
 function ThemeButton() {
   const theme = useTheme();
@@ -11,9 +12,7 @@ function ThemeButton() {
   return (
     <button
       className="absolute right-5 top-1/2 -translate-y-1/2"
-      onClick={() => {
-        dispatch({ type: 'toggle' });
-      }}
+      onClick={() => dispatch({ type: 'toggle' })}
     >
       {theme === 'dark' ? (
         <SunIcon className="size-6 dark:text-white" />

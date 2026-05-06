@@ -1,3 +1,4 @@
+/**
 @import './elements/blockquote.css';
 @import './elements/code.css';
 @import './elements/heading.css';
@@ -24,3 +25,4 @@
     @apply mt-1 mb-2;
   }
 }
+**/
