@@ -11,7 +11,7 @@ function ThemeButton() {
 
   return (
     <button
-      className="flex size-10 items-center justify-center rounded-10 border bg-surface"
+      className="flex size-10 items-center justify-center rounded-10 border border-border bg-surface"
       onClick={() => dispatch({ type: 'toggle' })}
     >
       {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
