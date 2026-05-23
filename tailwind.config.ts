@@ -10,8 +10,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bg: 'var(--color-bg)',
         border: 'var(--color-border)',
+        surface: 'var(--color-surface)',
         neutral: {
           0: 'var(--colors-neutral-0)',
           100: 'var(--colors-neutral-100)',

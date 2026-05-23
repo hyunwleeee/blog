@@ -91,13 +91,24 @@
 
   /* semantic tokens */
   --color-bg: var(--colors-neutral-0);
+  --color-surface: var(--colors-neutral-100);
   --color-border: var(--colors-neutral-200);
+  --color-text: var(--colors-neutral-600);
 }
 
 [data-theme="dark"] {
-  --color-bg: var(--colors-neutral-900);
+  --color-bg: var(--colors-neutral-800);
+  --color-surface: var(--colors-neutral-900);
   --color-border: var(--colors-neutral-700);
+  --color-text: var(--colors-neutral-400);
 }
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color 300ms ease-out, color 300ms ease;
+}
+
 
 /* Text Preset 1 - DM Sans, ExtraBold */
 .text-preset-1 {
@@ -198,11 +209,3 @@
   letter-spacing: var(--letter-spacing-md);
   font-weight: var(--font-weight-regular);
 }
-
-/**
-@layer base {
-  body {
-    @apply bg-slate-50 text-slate-800 dark:bg-background dark:text-white;
-  }
-}
-**/

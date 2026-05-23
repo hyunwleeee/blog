@@ -6,21 +6,24 @@ import { usePathname } from 'next/navigation';
 
 const links = [
   { href: '/', label: 'Home' },
-  { href: '/issues', label: 'Issues' },
+  { href: '/issues', label: 'Blog' },
+  { href: '/about', label: 'About' },
+  { href: '/newsletter', label: 'Newsletter' },
 ];
 
 export default function Navigation() {
   const path = usePathname();
+
   return (
     <nav>
-      <ul className="text-sm flex flex-row w-full justify-center gap-8">
+      <ul className="flex flex-row items-center h-full gap-6 text-preset-8">
         {links.map(link => (
           <li key={link.href}>
-            <Link className="relative" href={link.href}>
+            <Link href={link.href} className="relative">
               {link.href === path && (
                 <motion.span
                   layoutId="underline"
-                  className="absolute left-0 top-full block h-[2px] w-full bg-white"
+                  className="absolute left-0 top-full block h-[3px] w-full bg-blue-500"
                 />
               )}
               {link.label}
