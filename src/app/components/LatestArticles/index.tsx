@@ -40,14 +40,6 @@ export default function LatestArticles({ issues }: { issues: IssueType[] }) {
               >
                 <span className="text-preset-5 text-neutral-700 transition-colors group-hover:text-blue-800 dark:text-neutral-0 dark:group-hover:text-blue-500">
                   {article.title}
-                  {index % 2 === 1 && (
-                    <span
-                      aria-hidden="true"
-                      className="ml-2 inline-block text-base"
-                    >
-                      ↗
-                    </span>
-                  )}
                 </span>
                 <time
                   dateTime={publishedAt}
