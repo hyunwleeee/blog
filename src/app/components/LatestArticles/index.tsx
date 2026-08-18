@@ -72,7 +72,7 @@ export default function LatestArticles({ issues }: { issues: IssueType[] }) {
                 <span className="text-preset-5 text-neutral-700 transition-colors group-hover:text-blue-800 dark:text-neutral-0 dark:group-hover:text-blue-500">
                   {article.title}
                 </span>
-                <span className="mt-1 flex items-baseline gap-2 text-neutral-600 dark:text-neutral-400">
+                <span className="mt-1 flex flex-wrap items-baseline gap-x-2 gap-y-0 text-neutral-600 dark:text-neutral-400">
                   <time dateTime={publishedAt} className="text-preset-8-italic">
                     {dayjs(publishedAt).format('MMMM D, YYYY')}
                   </time>

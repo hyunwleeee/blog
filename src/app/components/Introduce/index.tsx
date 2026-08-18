@@ -35,7 +35,7 @@ export default function Introduce() {
       <div className="max-w-[600px]">
         <h1
           id="intro-heading"
-          className="text-preset-2 text-neutral-700 dark:text-neutral-0"
+          className="text-[28px] font-extrabold leading-[130%] tracking-[-0.5px] text-neutral-700 mobile:text-[32px] dark:text-neutral-0"
         >
           <span className="relative inline-block">
             Hi, I&apos;m Hyunwoo
