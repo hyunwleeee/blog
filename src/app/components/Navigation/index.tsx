@@ -10,8 +10,8 @@ import { cn } from '@utils/cn';
 const links = [
   { href: '/', label: 'Home' },
   { href: '/issues', label: 'Blog' },
-  { href: '/about', label: 'About' },
-  { href: '/newsletter', label: 'Newsletter' },
+  { href: '/about', label: 'About', disabled: true },
+  { href: '/newsletter', label: 'Newsletter', disabled: true },
 ];
 
 function MenuButton({ className }: { className?: string }) {
@@ -54,35 +54,52 @@ function NavLinks({
     >
       {links.map((link, index) => {
         const isActive =
-          link.href === '/' ? path === '/' : path.startsWith(link.href);
+          !link.disabled &&
+          (link.href === '/' ? path === '/' : path.startsWith(link.href));
+        const itemClassName = cn(
+          'block text-preset-8 transition-colors',
+          isVertical ? 'px-2 py-3' : 'rounded-10 px-3 py-2',
+          link.disabled
+            ? 'cursor-not-allowed select-none text-neutral-400 opacity-45 dark:text-neutral-600'
+            : isActive
+              ? 'font-semibold text-neutral-900 dark:text-neutral-0'
+              : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-0',
+        );
+        const label = (
+          <span
+            className={cn(
+              'relative inline-block',
+              isActive &&
+                'after:absolute after:inset-x-0 after:bottom-0 after:h-[3px] after:rounded-full after:bg-blue-700 dark:after:bg-blue-500',
+            )}
+          >
+            {link.label}
+          </span>
+        );
 
         return (
           <li
             key={link.href}
             className={cn(isVertical && index > 0 && 'border-t border-border')}
           >
-            <Link
-              href={link.href}
-              onClick={close}
-              aria-current={isActive ? 'page' : undefined}
-              className={cn(
-                'block text-preset-8 transition-colors',
-                isVertical ? 'px-2 py-3' : 'rounded-10 px-3 py-2',
-                isActive
-                  ? 'font-semibold text-neutral-900 dark:text-neutral-0'
-                  : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-0',
-              )}
-            >
+            {link.disabled ? (
               <span
-                className={cn(
-                  'relative inline-block',
-                  isActive &&
-                    'after:absolute after:inset-x-0 after:bottom-0 after:h-[3px] after:rounded-full after:bg-blue-700 dark:after:bg-blue-500',
-                )}
+                aria-label={`${link.label} (준비 중)`}
+                aria-disabled="true"
+                className={itemClassName}
               >
-                {link.label}
+                {label}
               </span>
-            </Link>
+            ) : (
+              <Link
+                href={link.href}
+                onClick={close}
+                aria-current={isActive ? 'page' : undefined}
+                className={itemClassName}
+              >
+                {label}
+              </Link>
+            )}
           </li>
         );
       })}
