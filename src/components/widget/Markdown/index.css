@@ -94,6 +94,7 @@
 .markdown blockquote {
   margin: 24px 0;
   border: 2px solid var(--colors-neutral-400);
+  border-radius: var(--corner-radius-8);
   background: var(--colors-neutral-200);
   padding: 6px 12px;
   color: var(--colors-neutral-700);
