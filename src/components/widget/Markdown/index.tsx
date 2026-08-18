@@ -31,6 +31,11 @@ function Markdown({ markdown }: { markdown: string }) {
             {children}
           </Link>
         ),
+        table: ({ children }) => (
+          <div className="markdown-table-wrapper">
+            <table>{children}</table>
+          </div>
+        ),
         pre: ({ children }) => <>{children}</>,
         code({ className, children, ...props }) {
           const match = /language-(\w+)/.exec(className || '');
