@@ -106,7 +106,7 @@
   margin-bottom: 0;
 }
 
-.markdown code:not(.markdown-code-block code) {
+.markdown .markdown-inline-code {
   border-radius: var(--corner-radius-4);
   background: var(--colors-neutral-200);
   padding: 2px 6px;
@@ -130,7 +130,14 @@
 }
 
 .markdown .markdown-code-block code {
+  border-radius: 0;
+  background: transparent !important;
+  padding: 0;
   font: inherit;
+}
+
+.markdown .markdown-code-block code span {
+  background: transparent !important;
 }
 
 .markdown hr {
@@ -216,7 +223,7 @@
 }
 
 [data-theme='dark'] .markdown blockquote,
-[data-theme='dark'] .markdown code:not(.markdown-code-block code),
+[data-theme='dark'] .markdown .markdown-inline-code,
 [data-theme='dark'] .markdown .markdown-code-block {
   border-color: var(--colors-neutral-700);
   background: var(--colors-neutral-700) !important;

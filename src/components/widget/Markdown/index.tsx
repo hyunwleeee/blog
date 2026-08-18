@@ -47,7 +47,10 @@ function Markdown({ markdown }: { markdown: string }) {
               {value.replace(/\n$/, '')}
             </SyntaxHighlighter>
           ) : (
-            <code className={className} {...props}>
+            <code
+              className={`markdown-inline-code ${className ?? ''}`}
+              {...props}
+            >
               {children}
             </code>
           );
