@@ -9,6 +9,7 @@ const socialLinks = [
     href: 'https://x.com/hyunwleeee',
     label: 'X',
     icon: XIcon,
+    disabled: true,
   },
   {
     href: 'https://github.com/hyunwleeee',
@@ -19,6 +20,7 @@ const socialLinks = [
     href: 'https://www.linkedin.com',
     label: 'LinkedIn',
     icon: LinkedinIcon,
+    disabled: true,
   },
   {
     href: 'https://www.frontendmentor.io',
@@ -62,17 +64,31 @@ export default function Introduce() {
         </div>
 
         <ul aria-label="소셜 링크" className="mt-6 flex items-center gap-3">
-          {socialLinks.map(({ href, label, icon: Icon }) => (
+          {socialLinks.map(({ href, label, icon: Icon, disabled }) => (
             <li key={label}>
-              <Link
-                href={href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={label}
-                className="flex size-10 items-center justify-center rounded-10 border border-border bg-[var(--color-bg)] transition-all hover:-translate-y-0.5 hover:bg-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
-              >
-                <Icon />
-              </Link>
+              {disabled ? (
+                <span
+                  aria-label={`${label} (준비 중)`}
+                  aria-disabled="true"
+                  className="flex size-10 cursor-not-allowed items-center justify-center rounded-10 border border-border bg-[var(--color-bg)] text-neutral-400 opacity-45 grayscale dark:text-neutral-600"
+                >
+                  <Icon aria-hidden="true" />
+                </span>
+              ) : (
+                <Link
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="group relative flex size-10 items-center justify-center rounded-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-0 rounded-10 border border-border bg-[var(--color-bg)] transition-all group-hover:-translate-y-0.5 group-hover:bg-surface"
+                  />
+                  <Icon aria-hidden="true" className="relative z-10" />
+                </Link>
+              )}
             </li>
           ))}
         </ul>
