@@ -1,51 +1,82 @@
-import Image from 'next/image';
-import { getUserInfo } from '@apis/github';
-import AnimatedText from '@components/AnimatedText';
-import { info } from '@constants/info';
-import { Section } from '@outer_components/layout';
-import type { UserType } from '@types';
-import { withAuth } from '@utils/withAuth';
+import Link from 'next/link';
+import FrontendMentorIcon from '@svgs/logo-frontend-mentor.svg';
+import GithubIcon from '@svgs/logo-github.svg';
+import LinkedinIcon from '@svgs/logo-linkedin.svg';
+import XIcon from '@svgs/logo-x.svg';
 
-export const tagMap = {
-  paragraph: 'p',
-  heading2: 'h2',
-} as const;
-
-export type TagType = keyof typeof tagMap;
-
-export type TexturesType = {
-  type: TagType;
-  text: string;
-}[];
-
-const textures: TexturesType = [
-  { type: 'paragraph', text: "Hello, I'm HyunWoo Lee," },
-  { type: 'heading2', text: 'Frontend' },
-  { type: 'heading2', text: 'Developer' },
+const socialLinks = [
+  {
+    href: 'https://x.com/hyunwleeee',
+    label: 'X',
+    icon: XIcon,
+  },
+  {
+    href: 'https://github.com/hyunwleeee',
+    label: 'GitHub',
+    icon: GithubIcon,
+  },
+  {
+    href: 'https://www.linkedin.com',
+    label: 'LinkedIn',
+    icon: LinkedinIcon,
+  },
+  {
+    href: 'https://www.frontendmentor.io',
+    label: 'Frontend Mentor',
+    icon: FrontendMentorIcon,
+  },
 ];
 
-export default async function Introduce() {
-  const whoami = await withAuth<UserType>(options =>
-    getUserInfo(info.username, options),
-  );
-
+export default function Introduce() {
   return (
-    <Section>
-      <div className="flex flex-row items-center justify-center gap-4 tablet:gap-10 laptop:gap-16 desktop:gap-20">
-        <AnimatedText textures={textures} />
-        {/*<div className="flex flex-shrink-0 w-[80px] h-[80px] tablet:h-[120px] tablet:w-[120px] laptop:h-[200px] laptop:w-[200px] desktop:h-[300px] desktop:w-[300px] items-center justify-center overflow-hidden rounded-3xl bg-primary">
-          <div className="relative aspect-square w-full">
-            <Image
-              className="absolute"
-              fill
-              src={'/svgs/avatar.svg'}
-              alt={whoami?.login || ''}
-              priority
+    <section aria-labelledby="intro-heading" className="pt-12 tablet:pt-16">
+      <div className="max-w-[600px]">
+        <h1
+          id="intro-heading"
+          className="text-preset-2 text-neutral-700 dark:text-neutral-0"
+        >
+          <span className="relative inline-block">
+            Hi, I&apos;m Hyunwoo
+            <span
+              aria-hidden="true"
+              className="absolute inset-x-0 bottom-1 -z-10 h-2 rounded-full bg-blue-500"
             />
-          </div>
+          </span>{' '}
+          👋
+        </h1>
+
+        <div className="mt-6 space-y-5 text-preset-7 text-neutral-600 dark:text-neutral-400">
+          <p>
+            I&apos;m on a journey to become a front-end web developer. I love
+            building little projects, trying out new coding techniques, and
+            sharing what I learn along the way. When I&apos;m not at my desk,
+            you&apos;ll find me reading, hiking through the mountains, or
+            challenging myself on rock-climbing walls.
+          </p>
+          <p>
+            I started this blog to document my progress, keep myself
+            accountable, and hopefully inspire anyone else who&apos;s learning
+            to code. Welcome to my corner of the internet, and thanks for
+            stopping by!
+          </p>
         </div>
-        */}
+
+        <ul aria-label="소셜 링크" className="mt-6 flex items-center gap-3">
+          {socialLinks.map(({ href, label, icon: Icon }) => (
+            <li key={label}>
+              <Link
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={label}
+                className="flex size-10 items-center justify-center rounded-10 border border-border bg-[var(--color-bg)] transition-transform hover:-translate-y-0.5 hover:bg-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
+              >
+                <Icon />
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
-    </Section>
+    </section>
   );
 }
