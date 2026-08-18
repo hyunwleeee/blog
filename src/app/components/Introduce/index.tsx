@@ -48,8 +48,7 @@ export default function Introduce() {
         </h1>
 
         <p className="mt-6 text-preset-7 text-neutral-600 dark:text-neutral-400">
-          프론트엔드와 백엔드를 오가며 소프트웨어를 만듭니다. 만들고
-          고치며 배운 것을 기록합니다.
+          개발하며 마주친 문제와 해결 과정, 새롭게 배운 것을 기록합니다.
         </p>
 
         <ul aria-label="소셜 링크" className="mt-6 flex items-center gap-3">
