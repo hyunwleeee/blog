@@ -9,7 +9,10 @@ import { withAuth } from '@utils/withAuth';
 async function getLatestIssues() {
   try {
     return await withAuth<IssueType[]>(options =>
-      getRepoIssues(info.username, info.repo, 1, 5, options),
+      getRepoIssues(info.username, info.repo, 1, 5, {
+        ...options,
+        signal: AbortSignal.timeout(3_000),
+      }),
     );
   } catch {
     return [];
