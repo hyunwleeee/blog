@@ -93,13 +93,13 @@
 
 .markdown blockquote {
   margin: 24px 0;
-  border: 2px solid var(--colors-neutral-400);
-  border-radius: var(--corner-radius-8);
-  background: var(--colors-neutral-200);
-  padding: 6px 12px;
+  border: 0;
+  border-left: 4px solid var(--colors-neutral-400);
+  background: transparent;
+  padding: 4px 0 4px 12px;
   color: var(--colors-neutral-700);
-  font-size: var(--font-size-16);
-  line-height: var(--line-height-146);
+  font-size: var(--font-size-18);
+  line-height: var(--line-height-150);
 }
 
 .markdown blockquote > :last-child {
@@ -116,12 +116,12 @@
 }
 
 .markdown .markdown-code-block {
-  margin: 24px 0;
+  margin: 24px 0 !important;
   overflow-x: auto;
   border: 1px solid var(--colors-neutral-200);
-  border-radius: var(--corner-radius-12);
-  background: var(--colors-neutral-200);
-  padding: 12px;
+  border-radius: var(--corner-radius-12) !important;
+  background: var(--colors-neutral-200) !important;
+  padding: 12px !important;
   color: var(--colors-neutral-600);
   font-family: var(--font-family-mono);
   font-size: var(--font-size-16);
@@ -193,8 +193,16 @@
   background: var(--colors-blue-200);
   padding: 12px;
   color: var(--colors-neutral-700);
-  font-size: var(--font-size-16);
-  line-height: var(--line-height-146);
+  font-size: var(--font-size-18);
+  line-height: var(--line-height-150);
+}
+
+.markdown .callout > strong:first-child,
+.markdown .callout > p:first-child > strong:first-child {
+  display: block;
+  margin-bottom: 6px;
+  font-size: var(--font-size-20);
+  line-height: var(--line-height-130);
 }
 
 .markdown .callout-tip {
@@ -211,8 +219,13 @@
 [data-theme='dark'] .markdown code:not(.markdown-code-block code),
 [data-theme='dark'] .markdown .markdown-code-block {
   border-color: var(--colors-neutral-700);
-  background: var(--colors-neutral-700);
+  background: var(--colors-neutral-700) !important;
   color: var(--colors-neutral-0);
+}
+
+[data-theme='dark'] .markdown blockquote {
+  border-left-color: var(--colors-neutral-600);
+  background: transparent !important;
 }
 
 [data-theme='dark'] .markdown .callout,
@@ -220,4 +233,11 @@
 [data-theme='dark'] .markdown .callout-warning {
   background: var(--colors-neutral-700);
   color: var(--colors-neutral-0);
+}
+
+@media (max-width: 767px) {
+  .markdown p:has(> img) + p > em {
+    font-size: var(--font-size-16);
+    line-height: var(--line-height-130);
+  }
 }

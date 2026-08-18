@@ -1,10 +1,20 @@
+'use client';
+
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import {
+  oneLight,
+  vscDarkPlus,
+} from 'react-syntax-highlighter/dist/esm/styles/prism';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
+import useTheme from '@hooks/useTheme';
 import './index.css';
 
 function Markdown({ markdown }: { markdown: string }) {
+  const theme = useTheme();
+
   return (
     <ReactMarkdown
       className="markdown markdown-body size-full"
@@ -28,9 +38,14 @@ function Markdown({ markdown }: { markdown: string }) {
           const isBlock = Boolean(match) || value.includes('\n');
 
           return isBlock ? (
-            <div className="markdown-code-block" data-language={match?.[1]}>
-              <code>{value.replace(/\n$/, '')}</code>
-            </div>
+            <SyntaxHighlighter
+              language={match?.[1]}
+              style={theme === 'dark' ? vscDarkPlus : oneLight}
+              PreTag="div"
+              className="markdown-code-block"
+            >
+              {value.replace(/\n$/, '')}
+            </SyntaxHighlighter>
           ) : (
             <code className={className} {...props}>
               {children}
