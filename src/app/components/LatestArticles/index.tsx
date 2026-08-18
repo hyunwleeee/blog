@@ -51,7 +51,7 @@ export default function LatestArticles({ issues }: { issues: IssueType[] }) {
                 </span>
                 <time
                   dateTime={publishedAt}
-                  className="mt-1 block text-preset-8 text-neutral-600 dark:text-neutral-400"
+                  className="mt-1 block text-preset-8-italic text-neutral-600 dark:text-neutral-400"
                 >
                   {dayjs(publishedAt).format('MMMM D, YYYY')}
                 </time>
