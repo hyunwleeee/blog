@@ -106,14 +106,18 @@
   --color-border: var(--colors-neutral-700);
   --color-text: var(--colors-neutral-400);
   --page-pattern: url('/svgs/pattern-dark.svg');
-  --page-glow: rgba(77, 116, 245, 0.15);
+  --page-glow: rgba(77, 116, 245, 0.07);
 }
 
 body {
   min-height: 100vh;
   background-color: var(--color-page);
   background-image:
-    radial-gradient(circle 350px at 50% -72px, var(--page-glow), transparent),
+    radial-gradient(
+      ellipse 420px 220px at 50% 0,
+      var(--page-glow) 0%,
+      transparent 72%
+    ),
     var(--page-pattern), var(--page-pattern);
   background-position:
     center top,
