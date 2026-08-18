@@ -6,7 +6,7 @@ import { Popover, PopoverContent } from '@outer_components/layout/Popover';
 export default function Header() {
   return (
     <Popover className="relative mx-auto mt-5 block w-[calc(100%-32px)] max-w-[640px]">
-      <header className="flex h-[52px] flex-row justify-between rounded-10 border border-border bg-[var(--color-bg)] p-[5px]">
+      <header className="flex h-[52px] flex-row justify-between rounded-10 border border-border bg-neutral-0 p-[5px] shadow-[0_6px_10px_rgba(123,123,123,0.03)] transition-colors dark:bg-neutral-800">
         <Image
           src="/images/me.jpg"
           width={40}
