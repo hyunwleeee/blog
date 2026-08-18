@@ -1,4 +1,5 @@
 import { getRepoIssues } from '@apis/github';
+import Footer from '@components/Footer';
 import Introduce from '@components/Introduce';
 import LatestArticles from '@components/LatestArticles';
 import { info } from '@constants/info';
@@ -22,6 +23,7 @@ export default async function Page() {
     <main className="mx-auto min-h-[calc(100vh-72px)] w-[calc(100%-32px)] max-w-[640px] border-x border-border px-5 tablet:px-5">
       <Introduce />
       <LatestArticles issues={issues} />
+      <Footer />
     </main>
   );
 }
