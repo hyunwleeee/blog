@@ -1,66 +1,58 @@
 'use client';
 
-import { XMarkIcon } from '@heroicons/react/24/solid';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/navigation';
-import type { PropsWithChildren } from 'react';
+import type { MouseEvent, PropsWithChildren } from 'react';
 import { useEffect } from 'react';
-import Carousel from '@components/Carousel';
-import TileLink from '@components/Carousel/TileLink';
-import { Card, CardTitle } from '@components/commons/Card';
-import type { IssueType } from '@types';
 
-function IssueModal({
-  issues,
-  children,
-}: PropsWithChildren<{ issues: IssueType[] }>) {
+function IssueModal({ children }: PropsWithChildren) {
   const router = useRouter();
 
-  function handleBackdropClick() {
-    router.back();
-  }
-
-  function handleBackdropKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Escape') {
-      router.back();
-    }
-  }
+  const close = () => router.back();
 
   useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') router.back();
+    };
+
     document.documentElement.classList.add('overflow-hidden');
-    window.addEventListener('keydown', handleBackdropKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
       document.documentElement.classList.remove('overflow-hidden');
-      window.removeEventListener('keydown', handleBackdropKeyDown);
+      window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [router]);
+
+  const handleBackdropClick = (event: MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget) close();
+  };
 
   return (
-    <div className="w-full fixed inset-0 flex justify-center gap-4 bg-black/50 backdrop-blur-sm z-40">
-      <div className="absolute z-50 top-12 right-10 bg-transparent">
+    <div
+      role="presentation"
+      onMouseDown={handleBackdropClick}
+      className="fixed inset-0 z-40 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm tablet:p-8"
+    >
+      <section
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="issue-modal-title"
+        className="relative flex max-h-[calc(100dvh-32px)] w-full max-w-[800px] flex-col overflow-hidden rounded-20 border border-border bg-neutral-0 text-neutral-700 shadow-2xl dark:bg-neutral-800 dark:text-neutral-0 tablet:max-h-[calc(100dvh-64px)]"
+      >
         <button
-          className="flex justify-center items-center w-10 h-10 bg-white rounded-full shadow-lg"
-          onClick={handleBackdropClick}
+          type="button"
+          onClick={close}
+          aria-label="글 닫기"
+          className="absolute right-4 top-4 z-20 flex size-10 items-center justify-center rounded-full border border-border bg-neutral-0 text-neutral-700 shadow-lg transition-colors hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 dark:bg-neutral-800 dark:text-neutral-0 dark:hover:bg-neutral-700"
         >
-          <XMarkIcon className="h-6 w-6 text-slate-900" />
+          <XMarkIcon className="size-5" />
         </button>
-      </div>
 
-      <div className="absolute top-24 text-black bg-primary/20 rounded-xl w-[70vw] h-24 overflow-auto scrollbar-hide z-30">
-        <Carousel>
-          {issues.map(({ title, id, number }) => (
-            <TileLink href={`/issues/${number}`} key={id}>
-              <Card className="bg-transparent items-center justify-center">
-                <CardTitle className="size-full font-normal">{title}</CardTitle>
-              </Card>
-            </TileLink>
-          ))}
-        </Carousel>
-      </div>
-
-      <div className="bg-white dark:bg-background rounded-xl text-black absolute top-52 w-[70vw] h-[70vh] overflow-scroll scrollbar-hide">
-        {children}
-      </div>
+        <div className="overflow-y-auto overscroll-contain scrollbar-hide">
+          {children}
+        </div>
+      </section>
     </div>
   );
 }

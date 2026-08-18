@@ -1,58 +1,64 @@
+import dayjs from 'dayjs';
 import Image from 'next/image';
 import Markdown from '@/components/widget/Markdown';
-import { getRepoIssue, getRepoIssues } from '@apis/github';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@components/commons/Card';
+import { getRepoIssue } from '@apis/github';
 import { info } from '@constants/info';
 import IssueModal from '@outer_components/layout/Modal/IssueModal';
-import { type IssueType } from '@types';
+import type { IssueType } from '@types';
+import { getIssueLabels } from '@utils/getIssueLabels';
 import { withAuth } from '@utils/withAuth';
 
 export default async function IssueModalPage(props: {
   params: Promise<{ number: string }>;
 }) {
-  const params = await props.params;
-
-  const { number: issue_number } = params;
-
-  const [issue, issues] = await Promise.all([
-    withAuth<IssueType>(options =>
-      getRepoIssue(info.username, info.repo, Number(issue_number), options),
-    ),
-    withAuth<IssueType[]>(options =>
-      getRepoIssues(info.username, info.repo, 1, 10, options),
-    ),
-  ]);
+  const { number } = await props.params;
+  const issue = await withAuth<IssueType>(options =>
+    getRepoIssue(info.username, info.repo, Number(number), options),
+  );
+  const labels = getIssueLabels(issue).slice(0, 2);
 
   return (
-    <IssueModal
-      issues={issues.filter(issue => String(issue.number) != issue_number)}
-    >
-      <Card className="relative">
-        <CardHeader className="z-10 bg-white dark:bg-background border-b dark:border-black border-gray-200 fixed w-[70vw] items-center rounded-t-lg">
-          <div className="relative mx-auto w-9 h-9 float-left rounded-full overflow-hidden mr-2">
-            <Image
-              src={issue.user?.avatar_url ?? ''}
-              fill
-              sizes="(max-width: 768px) 100vw, 33vw"
-              alt=""
-              className="object-cover"
-            />
+    <IssueModal>
+      <article>
+        <header className="border-b border-border px-6 pb-6 pt-7 tablet:px-10 tablet:pb-8 tablet:pt-9">
+          {labels.length > 0 && (
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.08em] text-blue-800 dark:text-blue-500">
+              {labels.join(' · ')}
+            </p>
+          )}
+          <h1
+            id="issue-modal-title"
+            className="max-w-[650px] pr-12 text-preset-3 text-neutral-700 dark:text-neutral-0 tablet:text-preset-2"
+          >
+            {issue.title}
+          </h1>
+
+          <div className="mt-5 flex items-center gap-3 text-preset-8 text-neutral-600 dark:text-neutral-400">
+            <div className="relative size-8 overflow-hidden rounded-full bg-surface">
+              <Image
+                src={issue.user?.avatar_url ?? '/images/me.jpg'}
+                fill
+                sizes="32px"
+                alt=""
+                className="object-cover"
+              />
+            </div>
+            <p>
+              <span className="font-medium text-neutral-700 dark:text-neutral-0">
+                {issue.user?.login}
+              </span>
+              <span aria-hidden="true"> · </span>
+              <time dateTime={issue.created_at}>
+                {dayjs(issue.created_at).format('MMMM D, YYYY')}
+              </time>
+            </p>
           </div>
-          <CardTitle className="dark:text-white">{issue.title}</CardTitle>
-          <CardDescription className="dark:text-white">
-            <span className="mr-1">{issue.user?.login}</span>
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="absolute top-20 w-[70vw] overflow-hidden">
+        </header>
+
+        <div className="px-6 py-8 tablet:px-10 tablet:py-10">
           <Markdown markdown={issue.body ?? ''} />
-        </CardContent>
-      </Card>
+        </div>
+      </article>
     </IssueModal>
   );
 }
