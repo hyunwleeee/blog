@@ -69,7 +69,7 @@ export default function Introduce() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={label}
-                className="flex size-10 items-center justify-center rounded-10 border border-border bg-[var(--color-bg)] transition-transform hover:-translate-y-0.5 hover:bg-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
+                className="flex size-10 items-center justify-center rounded-10 border border-border bg-[var(--color-bg)] transition-all hover:-translate-y-0.5 hover:bg-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
               >
                 <Icon />
               </Link>

@@ -75,6 +75,9 @@ const config: Config = {
         24: 'var(--corner-radius-24)',
         full: 'var(--corner-radius-full)',
       },
+      transitionDuration: {
+        DEFAULT: '300ms',
+      },
       // boxShadow: {
       //   darkShadow:
       //     '1px 3px 0 rgba(255, 255, 255, 0.1), 0 1px 2px -1px rgba(255, 255, 255, 0.08)',

@@ -7,10 +7,8 @@ export const item: Variants = {
   show: {
     y: 0,
     transition: {
-      type: 'spring',
-      stiffness: 50,
-      damping: 10,
-      mass: 0.5,
+      duration: 0.3,
+      ease: 'easeOut',
     },
   },
 };

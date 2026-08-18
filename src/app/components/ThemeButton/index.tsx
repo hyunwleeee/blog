@@ -13,7 +13,7 @@ function ThemeButton() {
     <button
       type="button"
       aria-label={theme === 'dark' ? '라이트 모드로 전환' : '다크 모드로 전환'}
-      className="flex size-10 items-center justify-center rounded-10 border border-border bg-surface"
+      className="flex size-10 items-center justify-center rounded-10 border border-border bg-surface transition-colors"
       onClick={() => dispatch({ type: 'toggle' })}
     >
       {theme === 'dark' ? <SunIcon /> : <MoonIcon />}

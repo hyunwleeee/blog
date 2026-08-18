@@ -7,7 +7,8 @@ export const item: Variants = {
   show: {
     opacity: 1,
     transition: {
-      type: 'spring',
+      duration: 0.3,
+      ease: 'easeOut',
     },
   },
 };

@@ -11,7 +11,8 @@ export const item: Variants = {
     backdropFilter: '',
     borderBottom: '',
     transition: {
-      type: 'spring',
+      duration: 0.3,
+      ease: 'easeOut',
     },
   },
 };
