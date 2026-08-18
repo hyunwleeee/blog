@@ -30,7 +30,7 @@ export default async function IssuePage(props: {
           </h1>
           <time
             dateTime={issue.created_at}
-            className="mt-3 block text-preset-8-italic text-neutral-600 dark:text-neutral-400"
+            className="mt-3 block text-preset-7 italic text-neutral-600 dark:text-neutral-400"
           >
             Published {dayjs(issue.created_at).format('MMMM D, YYYY')}
           </time>
