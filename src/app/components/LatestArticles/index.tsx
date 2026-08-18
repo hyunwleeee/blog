@@ -3,12 +3,38 @@ import Link from 'next/link';
 import type { IssueType } from '@types';
 
 const fallbackArticles = [
-  { title: 'Building a personal blog with Next.js', date: '2025-02-18' },
-  { title: 'What I learned about responsive design', date: '2025-02-15' },
-  { title: 'A better way to organize design tokens', date: '2025-02-10' },
-  { title: 'Small tools that improve my workflow', date: '2025-02-04' },
-  { title: 'Notes from my frontend journey', date: '2025-01-29' },
+  {
+    title: 'Building a personal blog with Next.js',
+    date: '2025-02-18',
+    category: 'Next.js',
+  },
+  {
+    title: 'What I learned about responsive design',
+    date: '2025-02-15',
+    category: 'CSS',
+  },
+  {
+    title: 'A better way to organize design tokens',
+    date: '2025-02-10',
+    category: 'Design System',
+  },
+  {
+    title: 'Small tools that improve my workflow',
+    date: '2025-02-04',
+    category: 'Productivity',
+  },
+  {
+    title: 'Notes from my frontend journey',
+    date: '2025-01-29',
+    category: 'Frontend',
+  },
 ];
+
+function getPrimaryCategory(issue: IssueType) {
+  const label = issue.labels[0];
+
+  return typeof label === 'string' ? label : label?.name;
+}
 
 export default function LatestArticles({ issues }: { issues: IssueType[] }) {
   const articles = issues.length > 0 ? issues.slice(0, 5) : fallbackArticles;
@@ -31,6 +57,11 @@ export default function LatestArticles({ issues }: { issues: IssueType[] }) {
           const issue = 'number' in article ? article : null;
           const publishedAt =
             issue?.created_at ?? ('date' in article ? article.date : '');
+          const category = issue
+            ? getPrimaryCategory(issue)
+            : 'category' in article
+              ? article.category
+              : null;
 
           return (
             <li key={issue?.id ?? `${article.title}-${index}`}>
@@ -41,12 +72,20 @@ export default function LatestArticles({ issues }: { issues: IssueType[] }) {
                 <span className="text-preset-5 text-neutral-700 transition-colors group-hover:text-blue-800 dark:text-neutral-0 dark:group-hover:text-blue-500">
                   {article.title}
                 </span>
-                <time
-                  dateTime={publishedAt}
-                  className="mt-1 block text-preset-8-italic text-neutral-600 dark:text-neutral-400"
-                >
-                  {dayjs(publishedAt).format('MMMM D, YYYY')}
-                </time>
+                <span className="mt-1 flex items-baseline gap-2 text-neutral-600 dark:text-neutral-400">
+                  <time dateTime={publishedAt} className="text-preset-8-italic">
+                    {dayjs(publishedAt).format('MMMM D, YYYY')}
+                  </time>
+                  {category && (
+                    <span
+                      className="text-preset-8"
+                      aria-label={`카테고리: ${category}`}
+                    >
+                      <span aria-hidden="true">— </span>
+                      {category}
+                    </span>
+                  )}
+                </span>
               </Link>
             </li>
           );
