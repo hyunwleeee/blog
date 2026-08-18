@@ -1,7 +1,7 @@
 'use client';
 
 import type { Dispatch, ReactNode } from 'react';
-import { createContext, useEffect, useReducer } from 'react';
+import { createContext, useLayoutEffect, useReducer } from 'react';
 
 type Theme = 'light' | 'dark';
 
@@ -12,21 +12,18 @@ const ThemeDispatchContext = createContext<Dispatch<Action> | null>(null);
 
 type Action = { type: 'toggle' };
 
-function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, dispatch] = useReducer(themeReducer, INITIAL_THEME);
+function ThemeProvider({
+  children,
+  initialTheme,
+}: {
+  children: ReactNode;
+  initialTheme: Theme;
+}) {
+  const [theme, dispatch] = useReducer(themeReducer, initialTheme);
 
-  useEffect(() => {
-    const stored = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia(
-      '(prefers-color-scheme: dark)',
-    ).matches;
-    const initial = stored ?? (prefersDark ? 'dark' : 'light');
-    if (initial === 'dark') dispatch({ type: 'toggle' });
-  }, []);
-
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    window.localStorage.setItem('theme', theme);
+    document.cookie = `theme=${theme}; Path=/; Max-Age=31536000; SameSite=Lax`;
   }, [theme]);
 
   return (
@@ -46,3 +43,4 @@ function themeReducer(theme: Theme, action: Action): Theme {
 }
 
 export { ThemeProvider, ThemeContext, ThemeDispatchContext };
+export type { Theme };
