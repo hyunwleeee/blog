@@ -11,10 +11,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  modal,
 }: Readonly<{
   children: React.ReactNode;
-  modal: React.ReactNode;
 }>) {
   return (
     <html lang="ko" className="scrollbar-hide" data-theme="light">
@@ -22,7 +20,6 @@ export default function RootLayout({
         <ThemeProvider>
           <Header />
           {children}
-          {modal}
         </ThemeProvider>
       </body>
     </html>
