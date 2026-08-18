@@ -47,21 +47,10 @@ export default function Introduce() {
           👋
         </h1>
 
-        <div className="mt-6 space-y-5 text-preset-7 text-neutral-600 dark:text-neutral-400">
-          <p>
-            I&apos;m on a journey to become a front-end web developer. I love
-            building little projects, trying out new coding techniques, and
-            sharing what I learn along the way. When I&apos;m not at my desk,
-            you&apos;ll find me reading, hiking through the mountains, or
-            challenging myself on rock-climbing walls.
-          </p>
-          <p>
-            I started this blog to document my progress, keep myself
-            accountable, and hopefully inspire anyone else who&apos;s learning
-            to code. Welcome to my corner of the internet, and thanks for
-            stopping by!
-          </p>
-        </div>
+        <p className="mt-6 text-preset-7 text-neutral-600 dark:text-neutral-400">
+          프론트엔드와 백엔드를 오가며 소프트웨어를 만듭니다. 만들고
+          고치며 배운 것을 기록합니다.
+        </p>
 
         <ul aria-label="소셜 링크" className="mt-6 flex items-center gap-3">
           {socialLinks.map(({ href, label, icon: Icon, disabled }) => (
